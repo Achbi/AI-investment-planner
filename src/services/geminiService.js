@@ -44,7 +44,7 @@ export const getGeminiInvestmentSuggestions = async (promptData) => {
     `;
 
     // Use the correct format for prompt input (as an array)
-    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
     const result = await model.generateContent([prompt]);
 
     // Correctly call text() as a function
@@ -56,7 +56,9 @@ export const getGeminiInvestmentSuggestions = async (promptData) => {
     const jsonText = text.substring(jsonStartIndex, jsonEndIndex);
 
     const suggestions = JSON.parse(jsonText);
+    console.log("Investment suggestions:", suggestions);
     return suggestions;
+  
 
   } catch (error) {
     console.error("Error generating investment suggestions:", error);
